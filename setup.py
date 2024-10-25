@@ -8,9 +8,8 @@ pkg = "grouvee_export"
 setup(
     name=pkg,
     version="0.1.0",
-    url="https://github.com/seanbreckenridge/grouvee_export",
-    author="Sean Breckenridge",
-    author_email="seanbrecke@gmail.com",
+    url="https://github.com/purarue/grouvee_export",
+    author="purarue",
     description=("a partial grouvee exporter"),
     long_description=long_description,
     long_description_content_type="text/markdown",
