@@ -156,9 +156,9 @@ def _default(data: Any) -> Any:
         return str(data)
     elif hasattr(data, "_asdict") and callable(data._asdict):
         return data._asdict()
-    elif dataclasses.is_dataclass(data):
+    elif dataclasses.is_dataclass(data) and not isinstance(data, type):
         return dataclasses.asdict(data)
-    raise TypeError(f"Could not serialize {data} {data.__class__.__name__}")
+    raise TypeError(f"Could not serialize {data} {type(data).__name__}")
 
 
 def serialize_export(data: Iterable[Game]) -> str:
