@@ -1,0 +1,50 @@
+[project]
+name = "grouvee_export"
+version = "0.1.1"
+description = "a partial grouvee exporter"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.9"
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+]
+dependencies = ["PyYAML", "click>=7.0", "logzero", "selenium>=4.10.0"]
+[[project.authors]]
+name = "purarue"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project.scripts]
+grouvee_export = "grouvee_export.__main__:main"
+
+[project.urls]
+Homepage = "https://github.com/purarue/grouvee_export"
+
+[project.optional-dependencies]
+testing = ["mypy", "pytest"]
+
+[tool.mypy]
+pretty = "True"
+show_error_context = "True"
+show_error_codes = "True"
+check_untyped_defs = "True"
+namespace_packages = "True"
+disallow_any_generics = "True"
+disallow_subclassing_any = "True"
+disallow_untyped_calls = "True"
+disallow_untyped_defs = "True"
+disallow_incomplete_defs = "True"
+no_implicit_optional = "True"
+warn_redundant_casts = "True"
+warn_return_any = "True"
+warn_unreachable = "True"
+
+[tool.setuptools]
+script-files = ["bin/grouvee_notmuch"]
+
+[tool.setuptools.packages.find]
+include = ["grouvee_export"]
