@@ -14,7 +14,7 @@ This also includes a command to parse the resulting CSV file, once you've downlo
 
 ## Installation
 
-Requires `python3.9+`
+Requires `python3.10+`
 
 To install with pip, run:
 

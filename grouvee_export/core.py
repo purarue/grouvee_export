@@ -1,6 +1,5 @@
 import sys
 import os
-import shutil
 from pathlib import Path
 from typing import NamedTuple, Optional
 from functools import partial

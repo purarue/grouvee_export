@@ -4,12 +4,13 @@ import re
 from time import strptime
 from pathlib import Path
 import dataclasses
-from typing import Iterator, Optional, Tuple, List, NamedTuple, Any, Iterable, Dict
+from typing import Optional, NamedTuple, Any
+from collections.abc import Iterator, Iterable
 from datetime import datetime, date, timezone
 
 Url = str
-MetadataTuple = Tuple[str, Url]
-Metadata = Dict[str, Url]
+MetadataTuple = tuple[str, Url]
+Metadata = dict[str, Url]
 
 
 class ShelfAction(NamedTuple):
@@ -27,7 +28,7 @@ class Game:
     release_date: Optional[date] = None
     rating: Optional[int] = None
     review: Optional[str] = None
-    shelves: List[ShelfAction] = dataclasses.field(default_factory=list)
+    shelves: list[ShelfAction] = dataclasses.field(default_factory=list)
     genres: Metadata = dataclasses.field(default_factory=dict)
     franchises: Metadata = dataclasses.field(default_factory=dict)
     developers: Metadata = dataclasses.field(default_factory=dict)
@@ -118,7 +119,7 @@ def parse_export(path: Path) -> Iterator[Game]:
 
             rel: Optional[date] = _parse_release_date(release_date)
 
-            sh: List[ShelfAction] = []
+            sh: list[ShelfAction] = []
             if shelves:
                 for shelf_name, data in json.loads(shelves).items():
                     sh.append(
@@ -129,7 +130,7 @@ def parse_export(path: Path) -> Iterator[Game]:
                         )
                     )
 
-            metadata: Dict[str, Metadata] = {}
+            metadata: dict[str, Metadata] = {}
             for key, sdata in {
                 "genres": genres,
                 "franchises": franchises,
