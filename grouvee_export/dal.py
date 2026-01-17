@@ -24,10 +24,10 @@ class Game:
     grouvee_id: int
     name: str
     url: str
-    giantbomb_id: Optional[int] = None
-    release_date: Optional[date] = None
-    rating: Optional[int] = None
-    review: Optional[str] = None
+    giantbomb_id: int | None = None
+    release_date: date | None = None
+    rating: int | None = None
+    review: str | None = None
     shelves: list[ShelfAction] = dataclasses.field(default_factory=list)
     genres: Metadata = dataclasses.field(default_factory=dict)
     franchises: Metadata = dataclasses.field(default_factory=dict)
@@ -40,7 +40,7 @@ class Game:
             yield v.added
 
     @property
-    def added(self) -> Optional[datetime]:
+    def added(self) -> datetime | None:
         """
         When this Game was first added to a Shelf
         """
@@ -50,7 +50,7 @@ class Game:
         return dts[0]
 
     @property
-    def modified(self) -> Optional[datetime]:
+    def modified(self) -> datetime | None:
         """
         When this Game was last moved on a shelf - edited
         """
@@ -72,7 +72,7 @@ def _parse_metadata(sdata: str) -> Iterator[MetadataTuple]:
             yield (name, data["url"])
 
 
-def _parse_release_date(rel: Optional[str]) -> Optional[date]:
+def _parse_release_date(rel: str | None) -> date | None:
     if rel is None or rel.strip() == "":
         return None
     try:
@@ -117,7 +117,7 @@ def parse_export(path: Path) -> Iterator[Game]:
                 giantbomb_id,
             ) = line
 
-            rel: Optional[date] = _parse_release_date(release_date)
+            rel: date | None = _parse_release_date(release_date)
 
             sh: list[ShelfAction] = []
             if shelves:

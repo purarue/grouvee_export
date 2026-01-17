@@ -44,7 +44,7 @@ NO_CHROMEDRIVER_ERR = """Could not find chromedriver on your PATH
 Provide a path to the chromedriver binary with the -c flag"""
 
 
-def create_driver(chromedriver_path: Optional[str] = None) -> WebDriver:
+def create_driver(chromedriver_path: str | None = None) -> WebDriver:
     options = Options()
     if chromedriver_path is not None:
         options.binary_location = chromedriver_path
@@ -66,8 +66,8 @@ def export(driver: WebDriver) -> None:
 
 
 def login_and_export(
-    credential_location: Optional[str] = None,
-    chromedriver_location: Optional[str] = None,
+    credential_location: str | None = None,
+    chromedriver_location: str | None = None,
 ) -> None:
     credloc: Path
     if credential_location is None:
