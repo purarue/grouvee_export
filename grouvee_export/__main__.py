@@ -26,9 +26,7 @@ def main() -> None:
     help="Credentials file",
     default=None,
 )
-def export(
-    chromedriver_location: str | None, credential_path: str | None
-) -> None:
+def export(chromedriver_location: str | None, credential_path: str | None) -> None:
     """
     Use a chromedriver to login and start a Grouvee export
     """
